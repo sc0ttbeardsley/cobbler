@@ -1,5 +1,9 @@
 Cobbler CHANGELOG
 
+- - 1.6.9
+- (FEAT/cobbler) cobbler can now pass the virtio26 os version to virtinst, so virtio drivers can be used for RHEL5.3 for instance
+- (BUGF/cobbler) The URL to the WebUI documentation in the manpage was corrected
+
 - 1.6.7
 - (BUGF/koan) Workaround for a bug in ybin, use --verbose for happy return codes
 - (BUGF/cobbler) patch to redhat_register for Satellite 
