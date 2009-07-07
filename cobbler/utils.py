@@ -1155,13 +1155,13 @@ def set_virt_file_size(self,num):
     try:
         inum = int(num)
         if inum != float(num):
-            return CX(_("invalid virt file size (%s)" % inum))
+            return CX(_("invalid virt file size (%s)" % num))
         if inum >= 0:
             self.virt_file_size = inum
             return True
-        raise CX(_("invalid virt file size (%s)" % inum))
+        raise CX(_("invalid virt file size (%s)" % num))
     except:
-        raise CX(_("invalid virt file size (%s)" % inum))
+        raise CX(_("invalid virt file size (%s)" % num))
     return True
 
 def set_virt_ram(self,num):
