@@ -112,7 +112,7 @@ class PowerTool:
             if rc == 0:
                 break
             else:
-                time.sleep(pow(2,x)) # do a lil exponential backoff :)
+                time.sleep(pow(2,x-1)) # do a lil exponential backoff :)
 
         if not rc == 0:
            utils.die(self.logger,"command failed (rc=%s), please validate the physical setup and cobbler config" % rc)
