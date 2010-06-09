@@ -242,7 +242,7 @@ class CobblerXMLRPCInterface:
         def runner(self):
             for x in self.options.get("systems",[]):
                 object_id = self.remote.get_system_handle(x,token)
-                self.remote.power_system(object_id,self.options.get("power",""),token,logger=self.logger)
+                self.remote.power_system(object_id,self.options.get("power",""),token,sleep=self.options.get("sleep",5),logger=self.logger)
             return True
         self.check_access(token, "power")
         return self.__start_task(runner, token, "power", "Power management (%s)" % options.get("power",""), options)
@@ -1682,7 +1682,7 @@ class CobblerXMLRPCInterface:
             return True
 
 
-    def power_system(self,object_id,power=None,token=None,logger=None):
+    def power_system(self,object_id,power=None,token=None,sleep=None,logger=None):
         """
         Internal implementation used by background_power, do not call
         directly if possible.  
@@ -1695,7 +1695,7 @@ class CobblerXMLRPCInterface:
         elif power=="off":
             rc=self.api.power_off(obj, user=None, password=None, logger=logger)
         elif power=="reboot":
-            rc=self.api.reboot(obj, user=None, password=None, logger=logger)
+            rc=self.api.reboot(obj, user=None, password=None, sleep=sleep, logger=logger)
         else:
             utils.die(self.logger, "invalid power mode '%s', expected on/off/reboot" % power)
         return rc

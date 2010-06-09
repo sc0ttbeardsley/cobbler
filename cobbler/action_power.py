@@ -57,7 +57,7 @@ class PowerTool:
             logger = clogger.Logger()
         self.logger      = logger
 
-    def power(self, desired_state):
+    def power(self, desired_state, sleep=None):
         """
         state is either "on" or "off".  Rebooting is implemented at the api.py
         level.

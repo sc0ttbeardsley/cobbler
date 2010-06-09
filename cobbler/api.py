@@ -806,12 +806,13 @@ class BootAPI:
         """
         return action_power.PowerTool(self._config,system,self,user,password,logger=logger).power("off")
 
-    def reboot(self,system, user=None, password=None, logger=None):
+    def reboot(self,system, user=None, password=None, sleep=None, logger=None):
         """
         Cycles power on a system that has power management configured.
         """
         self.power_off(system, user, password, logger=logger)
-        time.sleep(5)
+        if sleep and int(sleep) > 0:
+            time.sleep(int(sleep))
         return self.power_on(system, user, password, logger=logger)
 
     # ==========================================================================

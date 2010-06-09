@@ -246,6 +246,10 @@ class BootCLI:
             pass
         else:
             self.parser.add_option("--name", dest="name", help="name of object")
+
+        if object_action in [ "reboot" ]: # reboot allows name *and* sleep
+            self.parser.add_option("--sleep", dest="sleep", help="number of seconds to sleep between the off/on")
+
         (options, args) = self.parser.parse_args()
 
         if object_action in [ "add", "edit", "copy", "rename", "remove" ]:
@@ -273,6 +277,7 @@ class BootCLI:
             power={}
             power["power"] = object_action.replace("power","")
             power["systems"] = [options.name]
+            power["sleep"] = options.sleep
             task_id = self.remote.background_power_system(power, self.token)
         elif object_action == "report":
             if options.name is not None:
